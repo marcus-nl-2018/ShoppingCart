@@ -10,10 +10,7 @@ import java.util.List;
 import com.shopping.beans.DemandBean;
 import com.shopping.service.DemandService;
 import com.shopping.utility.DBUtil;
-//This class is to process the demand items which are
-//not available at the time of purchase by any customer
-//the customer will receive mail once the product is avaible
-//back into the store
+
 public class DemandServiceImpl implements DemandService {
 
 	@Override

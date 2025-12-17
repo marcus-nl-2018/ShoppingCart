@@ -17,9 +17,6 @@ import com.shopping.service.impl.CartServiceImpl;
 import com.shopping.service.impl.DemandServiceImpl;
 import com.shopping.service.impl.ProductServiceImpl;
 
-/**
- * Servlet implementation class UpdateToCart
- */
 @WebServlet("/UpdateToCart")
 public class UpdateToCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;

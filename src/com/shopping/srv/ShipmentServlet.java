@@ -15,9 +15,6 @@ import com.shopping.service.impl.OrderServiceImpl;
 import com.shopping.service.impl.UserServiceImpl;
 import com.shopping.utility.MailMessage;
 
-/**
- * Servlet implementation class ShipmentServlet
- */
 @WebServlet("/ShipmentServlet")
 public class ShipmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

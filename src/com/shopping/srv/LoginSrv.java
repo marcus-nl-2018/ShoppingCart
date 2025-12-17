@@ -13,9 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.shopping.beans.UserBean;
 import com.shopping.service.impl.UserServiceImpl;
 
-/**
- * Servlet implementation class LoginSrv
- */
 @WebServlet("/LoginSrv")
 public class LoginSrv extends HttpServlet {
 	private static final long serialVersionUID = 1L;

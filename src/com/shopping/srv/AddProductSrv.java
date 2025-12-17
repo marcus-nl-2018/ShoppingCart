@@ -15,9 +15,6 @@ import javax.servlet.http.Part;
 
 import com.shopping.service.impl.ProductServiceImpl;
 
-/**
- * Servlet implementation class AddProductSrv
- */
 @WebServlet("/AddProductSrv")
 @MultipartConfig(maxFileSize = 16177215)
 public class AddProductSrv extends HttpServlet {

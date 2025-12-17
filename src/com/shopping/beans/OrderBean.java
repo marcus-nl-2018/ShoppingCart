@@ -2,7 +2,6 @@ package com.shopping.beans;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class OrderBean implements Serializable {
 
 	private String transactionId;

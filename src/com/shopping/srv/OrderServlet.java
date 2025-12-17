@@ -13,9 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import com.shopping.service.impl.OrderServiceImpl;
 
-/**
- * Servlet implementation class OrderServlet
- */
 @WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -3,7 +3,6 @@ package com.shopping.beans;
 import java.io.InputStream;
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class ProductBean implements Serializable {
 
 	public ProductBean() {

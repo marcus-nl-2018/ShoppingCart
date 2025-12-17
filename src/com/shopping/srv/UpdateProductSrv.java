@@ -13,9 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.shopping.beans.ProductBean;
 import com.shopping.service.impl.ProductServiceImpl;
 
-/**
- * Servlet implementation class UpdateProductSrv
- */
 @WebServlet("/UpdateProductSrv")
 public class UpdateProductSrv extends HttpServlet {
 	private static final long serialVersionUID = 1L;

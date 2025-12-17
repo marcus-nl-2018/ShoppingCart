@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 
 import com.shopping.utility.IDUtil;
 
-@SuppressWarnings("serial")
 public class TransactionBean implements Serializable {
 
 	private String transactionId;
