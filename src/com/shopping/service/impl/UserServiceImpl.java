@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.shopping.beans.UserBean;
 import com.shopping.constants.IUserConstants;
+import com.shopping.exception.UserServiceException;
 import com.shopping.service.UserService;
 import com.shopping.utility.DBUtil;
 import com.shopping.utility.MailMessage;
@@ -60,8 +61,7 @@ public class UserServiceImpl implements UserService {
 			}
 
 		} catch (SQLException e) {
-			status = "Error: " + e.getMessage();
-			e.printStackTrace();
+			throw new UserServiceException("Failed to register user - ", e);
 		}
 
 		DBUtil.closeConnection(ps);
@@ -90,8 +90,7 @@ public class UserServiceImpl implements UserService {
 				flag = true;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new UserServiceException("Failed to check if the user is register - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -123,8 +122,7 @@ public class UserServiceImpl implements UserService {
 				status = "valid";
 
 		} catch (SQLException e) {
-			status = "Error: " + e.getMessage();
-			e.printStackTrace();
+			throw new UserServiceException("Failed to check if is a Valid Credential - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -162,7 +160,7 @@ public class UserServiceImpl implements UserService {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new UserServiceException("Failed to get User Details - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -195,8 +193,7 @@ public class UserServiceImpl implements UserService {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			throw new UserServiceException("Failed to get User name - ", e);
 		}
 
 		return fname;
@@ -221,8 +218,7 @@ public class UserServiceImpl implements UserService {
 				userAddr = rs.getString(1);
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			throw new UserServiceException("Failed to get User address - ", e);
 		}
 
 		return userAddr;
