@@ -10,6 +10,8 @@ import java.util.List;
 
 import com.shopping.beans.DemandBean;
 import com.shopping.beans.ProductBean;
+import com.shopping.exception.OrderServiceException;
+import com.shopping.exception.ProductServiceException;
 import com.shopping.service.ProductService;
 import com.shopping.utility.DBUtil;
 import com.shopping.utility.IDUtil;
@@ -63,8 +65,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 
 		} catch (SQLException e) {
-			status = "Error: " + e.getMessage();
-			e.printStackTrace();
+			throw new OrderServiceException("Add Product - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -100,8 +101,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 
 		} catch (SQLException e) {
-			status = "Error: " + e.getMessage();
-			e.printStackTrace();
+			throw new OrderServiceException("Remove Product - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -144,8 +144,7 @@ public class ProductServiceImpl implements ProductService {
 				status = "Product Updated Successfully!";
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new OrderServiceException("Update Product - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -173,8 +172,7 @@ public class ProductServiceImpl implements ProductService {
 			if (k > 0)
 				status = "Price Updated Successfully!";
 		} catch (SQLException e) {
-			status = "Error: " + e.getMessage();
-			e.printStackTrace();
+			throw new ProductServiceException("Update Product Price - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -214,7 +212,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ProductServiceException("Get All Products - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -255,7 +253,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ProductServiceException("Get All Products By Type - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -300,7 +298,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ProductServiceException("Search All Products - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -330,8 +328,7 @@ public class ProductServiceImpl implements ProductService {
 				image = rs.getBytes("image");
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ProductServiceException("Get Image - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -368,8 +365,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ProductServiceException("Get Product Details - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -431,13 +427,11 @@ public class ProductServiceImpl implements ProductService {
 				status = "Product Not available in the store!";
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ProductServiceException("Update Product Without Image - ", e);
 		}
 
 		DBUtil.closeConnection(con);
 		DBUtil.closeConnection(ps);
-		// System.out.println("Prod Update status : "+status);
 
 		return status;
 	}
@@ -462,8 +456,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ProductServiceException("Get Product Price - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -493,8 +486,7 @@ public class ProductServiceImpl implements ProductService {
 			if (k > 0)
 				flag = true;
 		} catch (SQLException e) {
-			flag = false;
-			e.printStackTrace();
+			throw new ProductServiceException("Sell No Product - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -524,8 +516,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ProductServiceException("Get Product Quantity - ", e);
 		}
 
 		DBUtil.closeConnection(con);

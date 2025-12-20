@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.shopping.exception.ProductServiceException;
+import com.shopping.exception.TransServiceException;
 import com.shopping.service.TransService;
 import com.shopping.utility.DBUtil;
 
@@ -30,7 +32,7 @@ public class TransServiceImpl implements TransService {
 				userId = rs.getString(1);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new TransServiceException("Get User Id - ", e);
 		}
 
 		return userId;

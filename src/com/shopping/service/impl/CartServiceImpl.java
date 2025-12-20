@@ -10,6 +10,7 @@ import java.util.List;
 import com.shopping.beans.CartBean;
 import com.shopping.beans.DemandBean;
 import com.shopping.beans.ProductBean;
+import com.shopping.exception.CartServiceException;
 import com.shopping.service.CartService;
 import com.shopping.utility.DBUtil;
 
@@ -69,8 +70,7 @@ public class CartServiceImpl implements CartService {
 			}
 
 		} catch (SQLException e) {
-			status = "Error: " + e.getMessage();
-			e.printStackTrace();
+			throw new CartServiceException("Add Product To Cart - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -110,8 +110,7 @@ public class CartServiceImpl implements CartService {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			throw new CartServiceException("Get All Cart Items - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -142,8 +141,7 @@ public class CartServiceImpl implements CartService {
 				count = rs.getInt(1);
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			throw new CartServiceException("Get Cart Count - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -212,8 +210,7 @@ public class CartServiceImpl implements CartService {
 			}
 
 		} catch (SQLException e) {
-			status = "Error: " + e.getMessage();
-			e.printStackTrace();
+			throw new CartServiceException("Remove Product From Cart - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -245,8 +242,7 @@ public class CartServiceImpl implements CartService {
 				flag = true;
 
 		} catch (SQLException e) {
-			flag = false;
-			e.printStackTrace();
+            throw new CartServiceException("Remove A Product - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -321,8 +317,7 @@ public class CartServiceImpl implements CartService {
 			}
 
 		} catch (SQLException e) {
-			status = "Error: " + e.getMessage();
-			e.printStackTrace();
+			throw new CartServiceException("Update Product To Cart - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -351,7 +346,7 @@ public class CartServiceImpl implements CartService {
 				count = rs.getInt(1);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new CartServiceException("Get Product Count - ", e);
 		}
 
 		return count;
@@ -380,8 +375,7 @@ public class CartServiceImpl implements CartService {
 				count = rs.getInt(1);
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			throw new CartServiceException("Get Cart Item Count - ", e);
 		}
 
 		DBUtil.closeConnection(con);

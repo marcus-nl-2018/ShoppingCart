@@ -11,6 +11,8 @@ import com.shopping.beans.CartBean;
 import com.shopping.beans.OrderBean;
 import com.shopping.beans.OrderDetails;
 import com.shopping.beans.TransactionBean;
+import com.shopping.exception.DemandServiceException;
+import com.shopping.exception.OrderServiceException;
 import com.shopping.service.OrderService;
 import com.shopping.utility.DBUtil;
 import com.shopping.utility.MailMessage;
@@ -31,10 +33,6 @@ public class OrderServiceImpl implements OrderService {
 		boolean ordered = false;
 
 		String transactionId = transaction.getTransactionId();
-
-		// System.out.println("Transaction: "+transaction.getTransactionId()+"
-		// "+transaction.getTransAmount()+" "+transaction.getUserName()+"
-		// "+transaction.getTransDateTime());
 
 		for (CartBean item : cartItems) {
 
@@ -95,8 +93,7 @@ public class OrderServiceImpl implements OrderService {
 				flag = true;
 
 		} catch (SQLException e) {
-			flag = false;
-			e.printStackTrace();
+			throw new OrderServiceException("Add Order - ", e);
 		}
 
 		return flag;
@@ -124,8 +121,7 @@ public class OrderServiceImpl implements OrderService {
 				flag = true;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new OrderServiceException("Add Transaction - ", e);
 		}
 
 		return flag;
@@ -152,8 +148,7 @@ public class OrderServiceImpl implements OrderService {
 				count = rs.getInt(1);
 
 		} catch (SQLException e) {
-			count = 0;
-			e.printStackTrace();
+			throw new OrderServiceException("Count Sold Item - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -188,8 +183,7 @@ public class OrderServiceImpl implements OrderService {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			throw new OrderServiceException("Get All Orders - ", e);
 		}
 
 		return orderList;
@@ -221,8 +215,7 @@ public class OrderServiceImpl implements OrderService {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			throw new OrderServiceException("Get Orders By User Id - ", e);
 		}
 
 		return orderList;
@@ -260,8 +253,7 @@ public class OrderServiceImpl implements OrderService {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			throw new OrderServiceException("Get All Order Details - ", e);
 		}
 
 		return orderList;
@@ -288,8 +280,7 @@ public class OrderServiceImpl implements OrderService {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new OrderServiceException("Ship Now - ", e);
 		}
 
 		DBUtil.closeConnection(con);

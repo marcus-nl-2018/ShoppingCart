@@ -3,29 +3,43 @@ package com.shopping.utility;
 import jakarta.mail.MessagingException;
 
 public class TestMail {
+
+	private static final String RECIPIENT = "ellison.alumni@gmail.com";
+	private static final String SUBJECT = "Mail Configuration Successful";
+
 	public static void main(String[] args) {
 		try {
-			String recipient = "ellison.alumni@gmail.com";
-			String subject = "Mail Configuration Successfull";
-			String htmlTextMessage = "" + "<html>"
-					+ "<head><title>Java Mail Configuration Test</title><style>.greenText{color:green;} p{font-size:14;}</style></head><body>"
-					+ "<h2 style='color:red;'>Welcome to Ellison Electronics</h2>" + "<p>Hey,<br>"
-					+ "Thanks for singing up with Ellison Electronics.<br>"
-					+ "We are glad that you choose <bold>us. We invite you to check out our latest collection of new electonics appliances."
-					+ "<br>We are providing upto 60% OFF on most of the electronic gadgets. So please visit our site and explore the collections. <br>"
-					+ " <br>Our Online electronics is growing in a larger amount these days and we are in high demand so we thanks all of you for "
-					+ "making us up to that level. We Deliver Product to your house with no extra delivery charges and we also have collection of most of the"
-					+ "branded items. As a Welcome gift for our New Customers we are providing additional 10% OFF Upto 500 Rs for the first product purchase. To avail this offer you only have "
-					+ "to enter the promo code given below.<br><br> PROMO CODE: "
-					+ "<span class='greenText'>ELLISON500</span><br><br>" + "Have a good day!<br>" + "</p>" + "</body>"
-					+ "</html>";
-			JavaMailUtil.sendMail(recipient, subject, htmlTextMessage);
-			System.out.println("Mail Sent Successfully!");
+			String message = buildTestMailMessage();
+			JavaMailUtil.sendMail(RECIPIENT, SUBJECT, message);
+			System.out.println("Mail sent successfully!");
 
-		} catch (MessagingException e) {
-			System.out.println("Mail Sending Failed With Error: " + e.getMessage());
-			e.printStackTrace();
+		} catch (MessagingException ex) {
+			System.err.println("Failed to send mail: " + ex.getMessage());
+			// In real applications, log this using a logger instead
 		}
 	}
 
+	private static String buildTestMailMessage() {
+		return "<html>" +
+				"<head>" +
+				"<title>Java Mail Configuration Test</title>" +
+				"<style>" +
+				".greenText { color: green; font-weight: bold; }" +
+				"p { font-size: 14px; }" +
+				"</style>" +
+				"</head>" +
+				"<body>" +
+				"<h2 style='color:red;'>Welcome to Ellison Electronics</h2>" +
+				"<p>" +
+				"Hey,<br/><br/>" +
+				"Thanks for signing up with Ellison Electronics.<br/>" +
+				"We are glad that you chose us. Check out our latest electronics appliances.<br/><br/>" +
+				"Enjoy up to <b>60% OFF</b> on most electronic gadgets.<br/><br/>" +
+				"As a welcome gift, get an additional <b>10% OFF up to ₹500</b> on your first purchase.<br/><br/>" +
+				"Use promo code: <span class='greenText'>ELLISON500</span><br/><br/>" +
+				"Have a great day!<br/>" +
+				"</p>" +
+				"</body>" +
+				"</html>";
+	}
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.shopping.beans.DemandBean;
+import com.shopping.exception.DemandServiceException;
 import com.shopping.service.DemandService;
 import com.shopping.utility.DBUtil;
 
@@ -52,8 +53,7 @@ public class DemandServiceImpl implements DemandService {
 			}
 
 		} catch (SQLException e) {
-			flag = false;
-			e.printStackTrace();
+			throw new DemandServiceException("Get Cart Item Count - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -82,11 +82,8 @@ public class DemandServiceImpl implements DemandService {
 
 			rs = ps.executeQuery();
 
-			// System.out.println("userId "+userId+"\nprodId: "+prodId);
-
 			if (rs.next()) {
 
-				// System.out.println("userId "+userId+"\nprodId: "+prodId);
 				ps2 = con.prepareStatement("delete from  user_demand where username=? and prodid=?");
 
 				ps2.setString(1, userId);
@@ -103,8 +100,7 @@ public class DemandServiceImpl implements DemandService {
 			}
 
 		} catch (SQLException e) {
-			flag = false;
-			e.printStackTrace();
+			throw new DemandServiceException("Remove Product - ", e);
 		}
 
 		DBUtil.closeConnection(con);
@@ -145,8 +141,7 @@ public class DemandServiceImpl implements DemandService {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			throw new DemandServiceException("Have Demanded - ", e);
 		}
 
 		return demandList;

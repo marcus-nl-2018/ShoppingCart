@@ -39,12 +39,14 @@ public class DBUtil {
 	}
 
 	public static void closeConnection(Connection con) {
-		/*
-		 * try { if (con != null && !con.isClosed()) {
-		 * 
-		 * con.close(); } } catch (SQLException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); }
-		 */
+
+		try {
+			if (con != null && !con.isClosed()) {
+				con.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void closeConnection(ResultSet rs) {
